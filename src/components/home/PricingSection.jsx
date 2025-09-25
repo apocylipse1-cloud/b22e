@@ -8,49 +8,6 @@ const PricingSection = () => {
   
   gsap.registerPlugin(ScrollTrigger)
 
-  useGSAP(() => {
-    gsap.fromTo('.pricing-title',
-      {
-        opacity: 0,
-        y: 50
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: '.pricing-title',
-          start: 'top 80%',
-          toggleActions: 'play none none none'
-        }
-      }
-    )
-
-    gsap.fromTo('.pricing-card',
-      {
-        opacity: 0,
-        y: 40,
-        scale: 0.95
-      },
-      {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 0.8,
-        ease: "power2.out",
-        stagger: {
-          amount: 0.4
-        },
-        scrollTrigger: {
-          trigger: '.pricing-grid',
-          start: 'top 75%',
-          toggleActions: 'play none none none'
-        }
-      }
-    )
-  })
-
   const pricingPlans = [
     {
       title: 'Essential',
@@ -102,46 +59,46 @@ const PricingSection = () => {
   ]
 
   return (
-    <section id="pricing" ref={sectionRef} className='min-h-screen section-dark text-white relative depth-3 section-transition'>
-      <div className="cinematic-overlay"></div>
+    <section id="pricing" ref={sectionRef} className='min-h-screen section-dark text-white relative depth-3 section-transition parallax-container'>
+      <div className="cinematic-overlay-animated"></div>
       <div className='container mx-auto section-padding'>
         <div className='text-center component-margin space-y-4 sm:space-y-6 lg:space-y-8'>
-          <h2 className='pricing-title font-[font2] heading-responsive-xl uppercase mb-4 sm:mb-6 lg:mb-8 leading-tight text-layer-3 text-glow'>
+          <h2 className='fade-up font-[font2] heading-responsive-xl uppercase mb-4 sm:mb-6 lg:mb-8 leading-tight text-layer-3 text-glow-strong'>
             Pricing
           </h2>
-          <div className='floating-panel-dark max-width-content'>
+          <div className='glass-luxury max-width-content fade-up hover-lift'>
             <p className='font-[font1] text-responsive leading-relaxed text-layer-2'>
               Choisissez le forfait qui correspond parfaitement à votre vision et à votre budget.
             </p>
           </div>
         </div>
 
-        <div className='pricing-grid responsive-grid-3 max-width-wide'>
+        <div className='responsive-grid-3 max-width-wide grid-stagger'>
           {pricingPlans.map((plan, index) => (
             <div 
               key={index}
-              className={`pricing-card group floating-panel-dark glass-hover glass-click gpu-accelerated relative ${
-                plan.popular ? 'border-2 border-[#D3FD50] glow-accent' : ''
+              className={`group glass-luxury gpu-accelerated relative hover-lift ${
+                plan.popular ? 'pricing-popular' : ''
               }`}
             >
               {/* Popular Badge */}
               {plan.popular && (
-                <div className='absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-[#D3FD50] to-[#b8e03e] text-black px-4 sm:px-6 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-[font2] uppercase tracking-wide glow-accent'>
+                <div className='absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-[#D3FD50] to-[#b8e03e] text-black px-4 sm:px-6 py-2 sm:py-3 rounded-full text-fluid-sm font-[font2] uppercase tracking-wide glow-luxury-strong font-bold'>
                   Most Popular
                 </div>
               )}
               
               {/* Plan Header */}
               <div className='text-center mb-6 sm:mb-8'>
-                <h3 className='font-[font2] heading-responsive-md uppercase text-layer-2 mb-2 sm:mb-3'>
+                <h3 className='font-[font2] heading-responsive-md uppercase text-layer-2 mb-2 sm:mb-3 font-bold'>
                   {plan.title}
                 </h3>
                 <div className='mb-3 sm:mb-4'>
-                  <span className='font-[font2] text-3xl sm:text-4xl lg:text-5xl text-[#D3FD50] glow-accent text-glow-strong'>
+                  <span className='font-[font2] text-fluid-5xl text-[#D3FD50] glow-luxury text-glow-strong font-bold'>
                     {plan.price}
                   </span>
                 </div>
-                <p className='font-[font1] text-sm sm:text-base text-layer-1 italic'>
+                <p className='font-[font1] text-fluid-base text-layer-1 italic'>
                   {plan.subtitle}
                 </p>
               </div>
@@ -150,7 +107,7 @@ const PricingSection = () => {
               <ul className='space-y-3 sm:space-y-4 mb-8 sm:mb-10 flex-1'>
                 {plan.features.map((feature, featureIndex) => (
                   <li key={featureIndex} className='flex items-start space-x-3 sm:space-x-4'>
-                    <span className='w-2 h-2 sm:w-3 sm:h-3 bg-gradient-to-r from-[#D3FD50] to-[#b8e03e] rounded-full flex-shrink-0 mt-2 sm:mt-2.5 micro-bounce glow-accent'></span>
+                    <span className='w-3 h-3 sm:w-4 sm:h-4 bg-gradient-to-r from-[#D3FD50] to-[#b8e03e] rounded-full flex-shrink-0 mt-2 sm:mt-2.5 glow-luxury'></span>
                     <span className='font-[font1] text-responsive leading-relaxed text-layer-1'>
                       {feature}
                     </span>
@@ -167,7 +124,7 @@ const PricingSection = () => {
                       element.scrollIntoView({ behavior: 'smooth', block: 'start' })
                     }
                   }}
-                  className={`w-full btn-pill h-12 sm:h-14 font-[font2] text-base sm:text-lg ${
+                  className={`w-full btn-pill h-12 sm:h-14 font-[font2] text-fluid-base hover-lift ${
                     plan.popular 
                       ? 'btn-primary' 
                       : 'btn-secondary'
@@ -178,28 +135,28 @@ const PricingSection = () => {
               </div>
 
               {/* Hover accent line */}
-              <div className='w-full accent-line mt-6 sm:mt-8 rounded-full glow-accent'></div>
+              <div className="divider-luxury mt-6 sm:mt-8"></div>
             </div>
           ))}
         </div>
 
         {/* Additional Info */}
         <div className='text-center component-margin'>
-          <div className='floating-panel-dark max-width-content'>
+          <div className='glass-luxury max-width-content fade-up hover-lift'>
             <p className='font-[font1] text-responsive text-layer-1 mb-4 sm:mb-6'>
               Tous les forfaits incluent une consultation gratuite et un devis personnalisé.
             </p>
             <div className='flex flex-col sm:flex-row justify-center items-center space-y-3 sm:space-y-0 sm:space-x-6 lg:space-x-8'>
               <div className='flex items-center space-x-2 sm:space-x-3'>
-                <span className='text-lg sm:text-xl micro-bounce glow-accent'>💎</span>
+                <span className='text-fluid-xl glow-luxury glow-pulse'>💎</span>
                 <span className='font-[font1] text-sm sm:text-base text-layer-1'>Premium Quality</span>
               </div>
               <div className='flex items-center space-x-2 sm:space-x-3'>
-                <span className='text-lg sm:text-xl micro-bounce glow-accent'>⚡</span>
+                <span className='text-fluid-xl glow-luxury glow-pulse'>⚡</span>
                 <span className='font-[font1] text-sm sm:text-base text-layer-1'>Fast Delivery</span>
               </div>
               <div className='flex items-center space-x-2 sm:space-x-3'>
-                <span className='text-lg sm:text-xl micro-bounce glow-accent'>🎯</span>
+                <span className='text-fluid-xl glow-luxury glow-pulse'>🎯</span>
                 <span className='font-[font1] text-sm sm:text-base text-layer-1'>100% Satisfaction</span>
               </div>
             </div>

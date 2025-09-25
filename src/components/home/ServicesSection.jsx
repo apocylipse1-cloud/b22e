@@ -8,49 +8,6 @@ const ServicesSection = () => {
   
   gsap.registerPlugin(ScrollTrigger)
 
-  useGSAP(() => {
-    gsap.fromTo('.services-title',
-      {
-        opacity: 0,
-        y: 50
-      },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: '.services-title',
-          start: 'top 80%',
-          toggleActions: 'play none none none'
-        }
-      }
-    )
-
-    gsap.fromTo('.service-card',
-      {
-        opacity: 0,
-        y: 40,
-        scale: 0.95
-      },
-      {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 0.8,
-        ease: "power2.out",
-        stagger: {
-          amount: 0.4
-        },
-        scrollTrigger: {
-          trigger: '.services-grid',
-          start: 'top 75%',
-          toggleActions: 'play none none none'
-        }
-      }
-    )
-  })
-
   const services = [
     {
       icon: '🎬',
@@ -79,32 +36,36 @@ const ServicesSection = () => {
   ]
 
   return (
-    <section id="services" ref={sectionRef} className='min-h-screen section-dark-alt text-white relative depth-3 section-transition'>
-      <div className="cinematic-overlay"></div>
+    <section id="services" ref={sectionRef} className='min-h-screen section-dark-alt text-white relative depth-3 section-transition parallax-container'>
+      <div className="cinematic-overlay-animated"></div>
+      
+      {/* Background pattern */}
+      <div className="absolute inset-0 bg-pattern-luxury opacity-30"></div>
+      
       <div className='container mx-auto section-padding'>
         <div className='text-center component-margin space-y-4 sm:space-y-6 lg:space-y-8'>
-          <h2 className='services-title font-[font2] heading-responsive-xl uppercase mb-4 sm:mb-6 lg:mb-8 leading-tight text-layer-3 text-glow'>
+          <h2 className='fade-up font-[font2] heading-responsive-xl uppercase mb-4 sm:mb-6 lg:mb-8 leading-tight text-layer-3 text-glow-strong'>
             Services
           </h2>
-          <div className='floating-panel-dark max-width-content'>
+          <div className='glass-luxury max-width-content fade-up hover-lift'>
             <p className='font-[font1] text-responsive leading-relaxed text-layer-2'>
             Everything you need to relive your wedding. beautifully filmed, thoughtfully crafted, and made just for you.
             </p>
           </div>
         </div>
 
-        <div className='services-grid responsive-grid-2 max-width-wide'>
+        <div className='responsive-grid-2 max-width-wide grid-stagger'>
           {services.map((service, index) => (
             <div 
               key={index}
-              className='service-card group floating-panel-dark glass-hover glass-click gpu-accelerated'
+              className='service-card group glass-luxury gpu-accelerated hover-lift'
             >
-              <div className='text-4xl sm:text-5xl lg:text-6xl mb-6 sm:mb-8 micro-bounce glow-accent'>
+              <div className='text-fluid-6xl mb-6 sm:mb-8 glow-luxury glow-pulse'>
                 {service.icon}
               </div>
               
               <div className='space-y-4 sm:space-y-6 mb-6 sm:mb-8'>
-                <h3 className='font-[font2] heading-responsive-md uppercase text-layer-2'>
+                <h3 className='font-[font2] heading-responsive-md uppercase text-layer-2 font-bold'>
                   {service.title}
                 </h3>
                 <p className='font-[font1] text-responsive leading-relaxed text-layer-1'>
@@ -115,13 +76,13 @@ const ServicesSection = () => {
               <ul className='space-y-2 sm:space-y-3 mb-6 sm:mb-8'>
                 {service.features.map((feature, featureIndex) => (
                   <li key={featureIndex} className='flex items-center font-[font1] text-sm sm:text-base text-layer-1'>
-                    <span className='w-2 h-2 sm:w-3 sm:h-3 bg-gradient-to-r from-[#D3FD50] to-[#b8e03e] rounded-full mr-3 sm:mr-4 micro-bounce glow-accent flex-shrink-0'></span>
+                    <span className='w-3 h-3 sm:w-4 sm:h-4 bg-gradient-to-r from-[#D3FD50] to-[#b8e03e] rounded-full mr-3 sm:mr-4 glow-luxury flex-shrink-0'></span>
                     {feature}
                   </li>
                 ))}
               </ul>
 
-              <div className='w-full accent-line mt-6 sm:mt-8 rounded-full glow-accent'></div>
+              <div className="divider-luxury"></div>
             </div>
           ))}
         </div>

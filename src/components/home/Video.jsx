@@ -2,7 +2,7 @@ import React from 'react';
 
 const Video = () => {
   return (
-    <div className="h-full w-full relative overflow-hidden">
+    <div className="h-full w-full relative overflow-hidden hero-bg-layer" data-parallax="0.3">
       {/* Fallback image for when video is loading or fails */}
       <img
         className="absolute inset-0 w-full h-full object-cover z-0"
@@ -57,6 +57,19 @@ const Video = () => {
         {/* Fallback message for browsers that don't support video */}
         Your browser does not support the video tag.
       </video>
+      
+      {/* Floating shapes for mid-layer parallax */}
+      <div className="hero-mid-layer bg-particles" data-parallax="0.15">
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+        <div className="particle"></div>
+      </div>
     </div>
   );
 };

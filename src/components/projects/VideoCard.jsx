@@ -2,7 +2,7 @@ import React from 'react'
 
 const VideoCard = ({ videoId, aspectRatio, index }) => {
   return (
-    <div className={`video-container group relative ${aspectRatio || 'aspect-video'} video-glass gpu-accelerated w-full`}>
+    <div className={`video-container group relative ${aspectRatio || 'aspect-video'} glass-luxury gpu-accelerated w-full hover-lift`}>
       {/* YouTube iframe embed with responsive 16:9 aspect ratio */}
       <iframe
         className='absolute top-0 left-0 w-full h-full rounded-lg sm:rounded-xl'
@@ -15,7 +15,7 @@ const VideoCard = ({ videoId, aspectRatio, index }) => {
       />
       
       {/* Subtle hover effect overlay - minimal to not interfere with video controls */}
-      <div className='absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-lg sm:rounded-xl' />
+      <div className='absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-lg sm:rounded-xl' />
     </div>
   )
 }
